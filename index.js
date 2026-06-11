@@ -32,13 +32,9 @@ function getIngredientes() {
   return lista;
 }
 
-function resolverPL() {
-  const lucroM = parseFloat(document.getElementById('lucroM').value) || 0;
-  const lucroC = parseFloat(document.getElementById('lucroC').value) || 0;
-  const ingredientes = getIngredientes();
-
-  const linhas = ingredientes.map(i => ({ a: i.aM, b: i.aC, c: i.estoque }));
-  linhas.push({ a: 1, b: 0, c: 0 }); 
+function resolverPLContinuo(lucroM, lucroC, ingredientes) {
+  const linhas = ingredientes.map(i => ({a : i.aM, b : i.aC, c: i.estoque }));
+  linhas.push({ a: 1, b: 0, c: 0 });
   linhas.push({ a: 0, b: 1, c: 0 });
 
   const candidatos = [[0, 0]];
@@ -57,15 +53,52 @@ function resolverPL() {
   }
 
   const factiveis = candidatos.filter(([x, y]) =>
-    ingredientes.every(ing => ing.aM * x + ing.aC * y <= ing.estoque + 1e-6)
+    ingredientes.every(ing => ing.aM * x + ing.aC * y <= ing.estoque + 1e-6) 
   );
 
   let melhor = null;
   const avaliados = [];
   for (const [x, y] of factiveis) {
     const z = lucroM * x + lucroC * y;
-    avaliados.push({ x, y, z });
-    if (!melhor || z > melhor.z + 1e-9) melhor = { x, y, z };
+    avaliados.push({ x, y, z});
+    if (!melhor || z > melhor.z + 1e-9) melhor = {x, y, z };
+  }
+
+  return { melhor, avaliados};
+}
+
+function resolverPLI(lucroM, lucroC, ingredientes, otimoContinuo) {
+  const margem = 2; 
+  const xMax = Math.ceil(otimoContinuo.x) + margem;
+  const yMax = Math.ceil(otimoContinuo.y) + margem;
+
+  let melhor = null;
+
+  for (let x = 0; x <= xMax; x++) {
+    for (let y = 0; y <= yMax; y++) {
+      const factivel = ingredientes.every(ing => ing.aM * x + ing.aC * y <= ing.estoque + 1e-6);
+      if (!factivel) continue;
+
+      const z = lucroM * x + lucroC * y;
+      if (!melhor || z > melhor.z + 1e-9) {
+        melhor = { x, y, z };
+      }
+    }
+  }
+
+  return melhor;
+}
+
+function resolverPL() {
+  const lucroM = parseFloat(document.getElementById('lucroM').value) || 0;
+  const lucroC = parseFloat(document.getElementById('lucroC').value) || 0;
+  const ingredientes = getIngredientes();
+
+  const { melhor: otimoContinuo, avaliados } = resolverPLContinuo(lucroM, lucroC, ingredientes);
+
+  let melhor = null;
+  if (otimoContinuo) {
+    melhor = resolverPLI(lucroM, lucroC, ingredientes, otimoContinuo);
   }
 
   return { melhor, avaliados, ingredientes };
@@ -84,8 +117,8 @@ function renderizar() {
     return;
   }
 
-  document.getElementById('resX').textContent = melhor.x.toFixed(2);
-  document.getElementById('resY').textContent = melhor.y.toFixed(2);
+  document.getElementById('resX').textContent = melhor.x;
+  document.getElementById('resY').textContent = melhor.y;
   document.getElementById('resZ').textContent = melhor.z.toFixed(2);
 
   const usoDiv = document.getElementById('usoEstoque');
