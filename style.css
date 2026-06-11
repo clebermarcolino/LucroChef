@@ -34,34 +34,8 @@ header p {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #c0392b;
+    color: red;
     margin: 32px 0 14px;
-}
-
-.pizzas-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-}
-
-.pizza-box {
-    border: 1px solid #eee;
-    border-radius: 10px;
-    padding: 14px 19px;
-    background: #fff;
-}
-
-.pizza-box h3 {
-    margin: 0 0 10px;
-    font-size: 15px;
-    font-weight: 600;
-}
-
-label {
-    display: block;
-    font-size: 12px;
-    color: #999;
-    margin-bottom: 4px;
 }
 
 input[type="number"], input[type="text"] {
@@ -108,7 +82,7 @@ td input {
 }
 
 .btn-calcular {
-    background: #c0392b;
+    background: red;
     color: #fff;
     border: none;
     padding: 14px;
@@ -241,7 +215,6 @@ summary {
 }
 
 @media (max-width: 600px) {
-    .pizzas-grid { grid-template-columns: 1fr; }
     .resultado-numbers { gap: 24px; }
     .resultado-item .valor { font-size: 32px; }
 }

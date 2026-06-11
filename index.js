@@ -1,3 +1,6 @@
+const LUCRO_M = 20;
+const LUCRO_C = 25;
+
 const ingredientesIniciais = [
   { nome: "Massa",     aM: 0.5, aC: 0.5,  estoque: 10 },
   { nome: "Queijo",    aM: 0.3, aC: 0.2,  estoque: 5  },
@@ -90,8 +93,8 @@ function resolverPLI(lucroM, lucroC, ingredientes, otimoContinuo) {
 }
 
 function resolverPL() {
-  const lucroM = parseFloat(document.getElementById('lucroM').value) || 0;
-  const lucroC = parseFloat(document.getElementById('lucroC').value) || 0;
+  const lucroM = LUCRO_M;
+  const lucroC = LUCRO_C;
   const ingredientes = getIngredientes();
 
   const { melhor: otimoContinuo, avaliados } = resolverPLContinuo(lucroM, lucroC, ingredientes);
