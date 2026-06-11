@@ -106,23 +106,6 @@ td input {
     font-size: 13px;
 }
 
-.btn-add {
-    background: none;
-    border: 1px dashed #ddd;
-    color: #999;
-    border-radius: 6px;
-    padding: 8px 14px;
-    font-size: 13px;
-    cursor: pointer;
-    margin-top: 10px;
-    width: 100%;
-}
-
-.btn-add:hover { 
-    border-color: #c0392b;
-    color: #c0392b; 
-}
-
 .btn-calcular {
     background: #c0392b;
     color: #fff;

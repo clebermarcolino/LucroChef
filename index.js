@@ -20,10 +20,6 @@ function addLinhaIngrediente(ing) {
 
 ingredientesIniciais.forEach(addLinhaIngrediente);
 
-document.getElementById('addIngrediente').addEventListener('click', () => {
-  addLinhaIngrediente({ nome: "Novo ingrediente", aM: 0, aC: 0, estoque: 0 });
-});
-
 function getIngredientes() {
   const linhas = corpoTabela.querySelectorAll('tr');
   const lista = [];
