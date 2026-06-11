@@ -10,9 +10,7 @@ const corpoTabela = document.getElementById('corpoTabela');
 function addLinhaIngrediente(ing) {
   const tr = document.createElement('tr');
   tr.innerHTML = `
-    <td><input type="text" class="nome-input" value="${ing.nome}"></td>
-    <td><input type="number" class="aM-input" value="${ing.aM}" step="0.01"></td>
-    <td><input type="number" class="aC-input" value="${ing.aC}" step="0.01"></td>
+    <td>${ing.nome}</td>
     <td><input type="number" class="estoque-input" value="${ing.estoque}" step="0.01"></td>
   `;
   corpoTabela.appendChild(tr);
@@ -23,11 +21,11 @@ ingredientesIniciais.forEach(addLinhaIngrediente);
 function getIngredientes() {
   const linhas = corpoTabela.querySelectorAll('tr');
   const lista = [];
-  linhas.forEach(tr => {
+  linhas.forEach((tr, i) => {
     lista.push({
-      nome: tr.querySelector('.nome-input').value,
-      aM: parseFloat(tr.querySelector('.aM-input').value) || 0,
-      aC: parseFloat(tr.querySelector('.aC-input').value) || 0,
+      nome: ingredientesIniciais[i].nome,
+      aM: ingredientesIniciais[i].aM,
+      aC: ingredientesIniciais[i].aC,
       estoque: parseFloat(tr.querySelector('.estoque-input').value) || 0
     });
   });
