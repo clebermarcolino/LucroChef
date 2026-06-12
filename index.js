@@ -156,11 +156,11 @@ function renderizar() {
 }
 
 const themeToggle = document.getElementById('themeToggle');
-const iconSun = themeToggle.querySelector('.icon-sun');
+const iconMoon = themeToggle.querySelector('.icon-moon');
 
 themeToggle.addEventListener('click', () => {
   document.body.classList.toggle('dark');
-  iconSun.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+  iconMoon.textContent = document.body.classList.contains('dark') ? '\u2600\uFE0F' : '\uD83C\uDF19';
 });
 
 document.getElementById('calcularBtn').addEventListener('click', renderizar);
