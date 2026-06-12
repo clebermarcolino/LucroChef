@@ -155,4 +155,12 @@ function renderizar() {
   }).join('');
 }
 
+const themeToggle = document.getElementById('themeToggle');
+const iconSun = themeToggle.querySelector('.icon-sun');
+
+themeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  iconSun.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+});
+
 document.getElementById('calcularBtn').addEventListener('click', renderizar);

@@ -1,14 +1,101 @@
+:root {
+    --bg: #faf7f5;
+    --text: black;
+    --text-muted: grey;
+    --card-bg: #fff;
+    --border: #eee;
+    --border-light: #f4f4f4;
+    --formula-bg: #faf7f5;
+    --formula-text: #555;
+    --input-border: #e2e2e2;
+}
+
+body.dark {
+    --bg: #1a1a1a;
+    --text: #f0f0f0;
+    --text-muted: #aaa;
+    --card-bg: #2b2b2b;
+    --border: #3a3a3a;
+    --border-light: #333;
+    --formula-bg: #232323;
+    --formula-text: #ccc;
+    --input-border: #444;
+}
+
+html {
+    font-size: 1.0rem;
+}
+
 body {
     font-family: 'Open Sans', Arial, sans-serif;
-    background: #faf7f5;
-    color: #2b2b2b;
+    background: var(--bg);
+    color: var(--text);
     margin: 0;
     padding: 32px 16px;
+    transition: background 0.2s, color 0.2s;
 }
 
 .container {
     max-width: 760px;
     margin: 0 auto;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 40px 14px 11px;
+    background: #161616;
+    margin: -32px -16px 32px;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: auto;
+}
+
+.nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #c0392b;
+    font-size: 1rem;
+}
+
+.nav-logo {
+    font-weight: 800;
+    font-size: 1.0625rem;
+    color: #fff;
+    letter-spacing: -0.01em;
+    margin-right: 20px;
+}
+
+.nav-logo-accent {
+    color: #e74c3c;
+}
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: #232323;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.theme-toggle:hover {
+    background: #2e2e2e;
 }
 
 header {
@@ -17,20 +104,21 @@ header {
 }
 
 header h1 {
-    font-size: 26px;
+    font-size: 1.625rem;
     font-weight: 700;
     margin: 0 0 6px;
-    color: #1a1a1a;
+    color: var(--text);
 }
 
 header p {
-    color: #888;
-    font-size: 14px;
+    color: var(--text-muted);
+    text-align: center;
+    font-size: 0.875rem;
     margin: 0;
 }
 
 .section-title {
-    font-size: 13px;
+    font-size: 0.8125rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -42,11 +130,11 @@ input[type="number"], input[type="text"] {
     width: 100%;
     padding: 8px 5px;
     margin-right: 3px;
-    border: 1px solid #e2e2e2;
+    border: 1px solid var(--input-border);
     border-radius: 6px;
-    font-size: 14px;
-    background: #fff;
-    color: #2b2b2b;
+    font-size: 0.875rem;
+    background: var(--card-bg);
+    color: var(--text);
 }
 
 input:focus {
@@ -57,41 +145,42 @@ input:focus {
 table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 13px;
+    font-size: 0.8125rem;
 }
 
 th {
     text-align: left;
     font-weight: 600;
-    color: #999;
-    font-size: 11px;
+    color: var(--text-muted);
+    font-size: 0.6875rem;
     text-transform: uppercase;
     letter-spacing: 0.04em;
     padding: 6px 8px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border);
 }
 
 td {
     padding: 6px 8px;
-    border-bottom: 1px solid #f4f4f4;
+    border-bottom: 1px solid var(--border-light);
 }
 
 td input {
     padding: 6px 12px;
-    font-size: 13px;
+    font-size: 0.8125rem;
 }
 
 .btn-calcular {
     background: red;
-    color: #fff;
+    color: whitesmoke;
     border: none;
     padding: 14px;
-    border-radius: 8px;
-    font-size: 15px;
+    border-radius: 20px;
+    font-size: 0.9375rem;
     font-weight: 700;
     cursor: pointer;
-    width: 100%;
-    margin-top: 28px;
+    width: 400px;
+    display: block;
+    margin: 28px auto 0;
     transition: background 0.15s;
 }
 
@@ -104,15 +193,15 @@ td input {
     border: 1px solid #f0d8d5;
     border-radius: 14px;
     padding: 28px;
-    background: #fff;
+    background: var(--card-bg);
     text-align: center;
 }
 
 .resultado-label {
-    font-size: 12px;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: #c0392b;
+    color: red;
     font-weight: 700;
     margin-bottom: 18px;
 }
@@ -125,20 +214,20 @@ td input {
 }
 
 .resultado-item .valor {
-    font-size: 40px;
+    font-size: 2.5rem;
     font-weight: 800;
-    color: #1a1a1a;
+    color: var(--text);
     line-height: 1;
 }
 
 .resultado-item .nome {
-    font-size: 13px;
-    color: #999;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
     margin-top: 8px;
 }
 
 .resultado-item.lucro .valor { 
-    color: #c0392b; 
+    color: red; 
 }
 
 .uso-section {
@@ -153,48 +242,48 @@ td input {
 .uso-label {
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
-    color: #999;
+    font-size: 0.75rem;
+    color: var(--text-muted);
     margin-bottom: 4px;
 }
 
 .uso-bar-bg {
-    background: #f4f4f4;
+    background: var(--border-light);
     border-radius: 4px;
     height: 6px;
     overflow: hidden;
 }
 
 .uso-bar-fill {
-    background: #c0392b;
+    background: red;
     height: 100%;
     border-radius: 4px;
 }
 
 details {
     margin-top: 28px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border);
     padding-top: 16px;
 }
 
 summary {
     cursor: pointer;
-    font-size: 13px;
-    color: #999;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.04em;
 }
 
 .formula-box {
-    background: #faf7f5;
+    background: var(--formula-bg);
     border-radius: 8px;
     padding: 12px 16px;
     font-family: 'JetBrains Mono', 'Courier New', monospace;
-    font-size: 13px;
+    font-size: 0.8125rem;
     margin: 10px 0;
     line-height: 1.8;
-    color: #555;
+    color: var(--formula-text);
 }
 
 .vertices-table th, .vertices-table td { 
@@ -204,17 +293,24 @@ summary {
 .vertices-table tr.otimo { 
     background: #fdf0ee;
     font-weight: 700;
-    color: #c0392b; 
+    color: red; 
 }
 
 .estoque-card {
-    border: 1px solid #eee;
+    border: 1px solid var(--border);
     border-radius: 10px;
     padding: 14px 16px;
-    background: #fff;
+    background: var(--card-bg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 @media (max-width: 600px) {
     .resultado-numbers { gap: 24px; }
-    .resultado-item .valor { font-size: 32px; }
+    .resultado-item .valor { font-size: 2rem; }
+}
+
+@media (min-width: 793px) {
+    .navbar {
+        padding: 14px calc((100% - 760px) / 2 + 24px);
+    }
 }
